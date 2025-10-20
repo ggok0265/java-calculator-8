@@ -36,7 +36,9 @@ public class Application {
                 throw new IllegalArgumentException("입력 형식이 올바르지 않습니다.");
             }
 
-            DELIMITERS.add(input.substring(2, backslashIndex));
+            String customDelimiters = input.substring(2, backslashIndex);
+            DELIMITERS.addAll(Arrays.asList(customDelimiters.split("")));
+
             return input.substring(backslashIndex + 2);
         }
 
