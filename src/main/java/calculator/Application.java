@@ -16,12 +16,31 @@ public class Application {
             throw new IllegalArgumentException("입력받은 문자열이 빈 문자열입니다.");
         }
 
+        input = parseCustomDelimiter(input);
+
         String regex = String.join("|", DELIMITERS);
         int[] nums = Arrays.stream(input.split(regex))
                 .mapToInt(Integer::parseInt)
                 .toArray();
 
         System.out.println("결과 : " + calculate(nums));
+    }
+
+    private static String parseCustomDelimiter(String input) {
+        if (input.startsWith("//")) {
+            int backslashIndex = input.indexOf('\\');
+            if (backslashIndex == -1) {
+                throw new IllegalArgumentException("입력 형식이 올바르지 않습니다.");
+            }
+            if (input.charAt(backslashIndex + 1) != 'n') {
+                throw new IllegalArgumentException("입력 형식이 올바르지 않습니다.");
+            }
+
+            DELIMITERS.add(input.substring(2, backslashIndex));
+            return input.substring(backslashIndex + 2);
+        }
+
+        return input;
     }
 
     private static int calculate(int[] nums) {

@@ -40,6 +40,22 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @Test
+    void 잘못된_형식의_문자열_입력1() {
+        assertSimpleTest(() ->
+            assertThatThrownBy(() -> runException("//1,2,3"))
+                .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    void 잘못된_형식의_문자열_입력2() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("//:\\1,2:3"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
