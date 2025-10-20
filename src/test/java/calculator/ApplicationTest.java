@@ -33,11 +33,11 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트_빈문자열() {
-        assertSimpleTest(() ->
-            assertThatThrownBy(() -> runException(" "))
-                .isInstanceOf(IllegalArgumentException.class)
-        );
+    void 빈문자열_케이스() {
+        assertSimpleTest(() -> {
+            run("\n");
+            assertThat(output()).contains("결과 : 0");
+        });
     }
 
     @Test

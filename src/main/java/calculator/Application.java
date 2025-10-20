@@ -12,8 +12,9 @@ public class Application {
         System.out.println("덧셈할 문자열을 입력해 주세요.");
         String input = Console.readLine();
 
-        if (input == null || input.isEmpty()) {
-            throw new IllegalArgumentException("입력받은 문자열이 빈 문자열입니다.");
+        if (validateEmpty(input)) {
+            System.out.println("결과 : 0");
+            return;
         }
 
         input = parseCustomDelimiter(input);
@@ -54,5 +55,9 @@ public class Application {
             sum += num;
         }
         return sum;
+    }
+
+    private static boolean validateEmpty(String input) {
+        return input == null || input.isEmpty();
     }
 }
