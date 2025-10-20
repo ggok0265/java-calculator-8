@@ -12,6 +12,10 @@ public class Application {
         System.out.println("덧셈할 문자열을 입력해 주세요.");
         String input = Console.readLine();
 
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException("입력받은 문자열이 빈 문자열입니다.");
+        }
+
         String regex = String.join("|", DELIMITERS);
         int[] nums = Arrays.stream(input.split(regex))
                 .mapToInt(Integer::parseInt)
